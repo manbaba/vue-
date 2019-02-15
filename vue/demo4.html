@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			<my-header :msg="msg" :list="list"></my-header>
+		</div>
+	</body>
+	<script>
+
+var vm=new Vue({
+	el:"#app",
+	data:{
+		list:["111","222","333"],
+msg:"父信息"
+	},
+	components:{
+		"my-header": {
+			template:	`<div>
+							<h2>你哈{{msg}}</h2>
+							<ul>
+								<li v-for="item in list">{{item}}</li>
+							</ul>
+							<my-nav :list="list"></my-nav>
+						</div>`
+						,
+//			data:function(){
+//				return{
+//				 msg:"hello myHeader",
+//				 
+//				}
+//			},
+			//props:["list"],
+			props:{
+				'list':{
+					type:Array,
+					default:function(){
+						return ["111哈哈哈","222哈哈哈","333"]
+						
+					}
+				},
+				"msg":{
+				 type:String,
+				 default:"子信息"
+				}
+			},
+			components:{
+				"my-nav":{
+					template:`<div>
+								
+								<ul>
+									<li v-for="item in list">{{item}}</li>
+								</ul>
+								
+							</div>`,
+					props:['list']
+				}
+			}
+		}
+	}
+	
+})
+	</script>
+</html>

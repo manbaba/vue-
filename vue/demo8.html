@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="js/vuex.js" ></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<button @click="changeCom('my-header')">一</button>
+			<button @click="changeCom('my-tit')">二</button>
+			<button @click="changeCom('my-foot')">三</button>
+			<keep-alive>
+				<component :is="noeHeader"></conponent>
+			</keep-alive>
+		</div>
+		<script>
+			
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					noeHeader:"my-header"
+				},
+				components:{
+					"my-header": {
+						template:"<h2>组件111<input type='text' /></h2>",						
+					},
+					"my-tit": {
+						template:"<h2>组件222<input type='text' /></h2>",						
+					},
+					"my-foot": {
+						template:"<h2>组件333<input type='text' /></h2>",						
+					}
+				},
+				methods:{
+					changeCom:function(componet){
+						this.noeHeader=componet
+					}
+				}
+			})
+		</script>
+	</body>
+	
+</html>

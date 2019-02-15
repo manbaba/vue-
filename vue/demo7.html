@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			<my-header>
+				<button slot="left">←</button>
+				<button slot="right">→</button>
+			</my-header>
+			
+		</div>
+	</body>
+	<script>
+
+var vm=new Vue({
+	el:"#app",
+	
+	components:{
+		"my-header": {
+			template:"<div><slot name='left'></slot>我是头部<slot name='right'><button >+</button></slot></div>",
+			
+		},
+		"my-tit": {
+			template:"<h1>我是标题111</h1>",
+			
+		}
+	}
+})
+	</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			<my-header></my-header>
+		</div>
+	</body>
+	<script>
+
+var vm=new Vue({
+	el:"#app",
+	data:{
+	 msg:'hello vue'
+	},
+	components:{
+		"my-header": {
+			template:	`<div>
+							<h2>你哈{{msg}}</h2>
+							<ul>
+								<li>第一</li>
+							</ul>
+						</div>`
+						,
+			data:function(){
+				return{
+				 msg:"hello myHeader"
+				}
+			}
+		}
+	}
+	
+})
+	</script>
+</html>

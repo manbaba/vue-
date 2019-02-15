@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			<my-header :msg="msg"></my-header>
+		</div>
+	</body>
+	<script>
+
+var vm=new Vue({
+	el:"#app",
+	data:{
+		list:["111","222","333"],
+	msg:"父信息"
+	},
+	components:{
+		"my-header": {
+			template:	`<div>
+							<h2 ref="myTit">{{msg}}你哈{{nowmsg}}</h2>
+							<ul>
+								<li v-for="item in list">{{item}}</li>
+							</ul>
+							<my-nav @changeEv="getchildCont" :list="list"></my-nav>
+						</div>`
+						,
+			data:function(){
+				return{
+				 nowmsg:this.msg,
+				 
+				}
+			},
+			//props:["list"],
+			props:{
+				'list':{
+					type:Array,
+					default:function(){
+						return ["111哈哈哈","222哈哈哈","333"]
+						
+					}
+				},
+				"msg":{
+				 type:String,
+				 default:"子信息"
+				}
+			},
+			methods:{
+				getchildCont:function(str){
+					//console.log(str)
+					//this.nowmsg=str;//数据操作 ---推荐
+					this.$refs.myTit.innerHTML=str;//dom操作
+				}
+			},
+			components:{
+				"my-nav":{
+					template:`<div>
+								
+								<ul>
+									<li @click="getCont" v-for="item in list">{{item}}</li>
+								</ul>
+								
+							</div>`,
+					props:['list'],
+					methods:{
+						getCont:function(ev){
+							
+							//console.log(ev.target.innerHTML)
+							this.$emit('changeEv',ev.target.innerHTML)
+						}
+					}
+				}
+			}
+		}
+	}
+	
+})
+	</script>
+</html>

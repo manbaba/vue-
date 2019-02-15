@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="js/vuex.js" ></script>
+	</head>
+	<body>
+		<!--<div id="app">
+			<my-header></my-header>
+			<my-list></my-list>
+		</div>
+		<script>
+			var busVM=new Vue()
+			var vm=new Vue({
+				el:"#app",
+				
+				components:{
+					"my-header": {
+						template:"<h2>{{msg}}</h2>",
+						data:function(){
+							return{
+								msg:"你好 my-header"
+							}
+						},
+						mounted:function(){
+							busVM.$on("changeEv",function(str){
+								console.log(str)
+								this.msg=str
+							}.bind(this))
+						}
+					},
+					"my-list": {
+						template:"<ul><li @click='getCont' v-for='i in list'>{{i}}</li></ul>",
+						data:function(){
+							return{
+								list:["first","second","three"]
+							}
+						},
+						methods:{
+							getCont:function(ev){
+								busVM.$emit("changeEv",ev.target.innerHTML)
+							}
+						}
+					}
+				}
+			})
+		</script>-->
+		<!--<div id="app">
+			{{count}}<br />
+			<my-addbtn :count="count"></my-addbtn>
+			<my-removebtn :count="count"></my-removebtn>
+		</div>
+		<script>
+			var busVM=new Vue()
+			var vm=new Vue({
+				el:"#app",
+				data:{
+				 count:0
+				},
+				mounted:function(){
+					
+					busVM.$on("changeEv",function(num){
+					this.count=num
+					}.bind(this))
+				},				
+				components:{
+					"my-addbtn": {
+						template:"<button @click='setCount'>+</button>",
+						props:["count"],
+						methods:{
+							setCount:function(){
+								busVM.$emit("changeEv",this.count+1)
+							}
+						}
+					},
+					"my-removebtn": {
+						template:"<button @click='setCount'>-</button>",
+						props:["count"],
+						methods:{
+							setCount:function(){
+								busVM.$emit("changeEv",this.count-1)
+							}
+						}
+					}
+				}
+			})
+		</script>-->
+		<div id="app">
+			{{counts}}<br />
+			<my-addbtn></my-addbtn>
+			<my-removebtn></my-removebtn>
+		</div>
+		<script>
+			var store=new Vuex.Store({
+				state:{
+					count:0
+				},
+				mutations:{
+					add:function(state){
+						state.count++
+					},
+					remove:function(state){
+						state.count--
+					}
+				}			
+			})
+			var vm=new Vue({
+				el:"#app",
+				computed:{
+					counts:function(){
+						return store.state.count;
+					}
+				},								
+				components:{
+					"my-addbtn": {
+						template:"<button @click='setCount'>+</button>",						
+						methods:{
+							setCount:function(){
+								store.commit('add')
+							}
+						}
+					},
+					"my-removebtn": {
+						template:"<button @click='setCount'>-</button>",
+						
+						methods:{
+							setCount:function(){
+								store.commit('remove')
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+	
+</html>

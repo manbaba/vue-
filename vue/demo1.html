@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			{{msgReverse}}
+			<span :title="msg">停留</span>
+			<div v-if="see">显示隐藏</div>
+			<ul>
+				<li v-for="item in todo">
+					{{item.text}}
+				</li>
+			</ul>
+			<input type="text" v-model="msg" @click="changebg" :title="msg" name="" id="" value="" />
+		</div>
+	</body>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:"hello vue",
+				see:false,
+				todo:[
+				{text:'888'},
+				{text:'666'},
+				{text:'111'}
+				
+				]
+			},
+			computed:{
+				msgReverse:function(){
+					return this.msg.split('').reverse().join('')
+				}
+			},
+			methods:{
+				changebg:function(ev){
+					ev.target.style.background="pink"
+				}
+				
+			},
+			mounted:function(){
+				console.log(888)
+				
+			},
+			updated:function(){
+				console.log(666)
+			},
+			watch:{
+				
+				msg:function(news,old){
+					console.log(news,old)
+				}
+			
+			}
+		})
+	</script>
+</html>
