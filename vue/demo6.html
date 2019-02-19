@@ -4,11 +4,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		
-		<title></title>
+		<title>非父子组件通信</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="js/vuex.js" ></script>
 	</head>
 	<body>
+		<!--非父子组件通信的两种方法：1空实力与自定义事件$emit与$on。2 vuex
+		1、空实力与自定义事件$emit与$on。通过emit进行发布，另一组件在生命周期mounted function里通过on进行订阅（只适合小型项目）-->
+		<!--2 vuex（推荐）-->
 		<!--<div id="app">
 			<my-header></my-header>
 			<my-list></my-list>
@@ -49,6 +52,9 @@
 				}
 			})
 		</script>-->
+		
+		
+		<!--空实力与自定义事件$emit与$on-->
 		<!--<div id="app">
 			{{count}}<br />
 			<my-addbtn :count="count"></my-addbtn>
@@ -89,6 +95,8 @@
 				}
 			})
 		</script>-->
+		
+		<!--vuex方法-->
 		<div id="app">
 			{{counts}}<br />
 			<my-addbtn></my-addbtn>
@@ -104,14 +112,20 @@
 						state.count++
 					},
 					remove:function(state){
+						if (state.count==0) {
+							alert('cant < 0')
+							return;
+							
+						}
 						state.count--
 					}
 				}			
 			})
 			var vm=new Vue({
 				el:"#app",
-				computed:{
+				computed:{//通过计算属性获取states
 					counts:function(){
+						
 						return store.state.count;
 					}
 				},								
@@ -120,7 +134,7 @@
 						template:"<button @click='setCount'>+测试</button>",						
 						methods:{
 							setCount:function(){
-								store.commit('add')
+								store.commit('add')//通过commit触发mutations里的方法
 							}
 						}
 					},

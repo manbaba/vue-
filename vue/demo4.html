@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		
-		<title></title>
+		<title>父组件向子组件传值</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 	</head>
@@ -14,7 +14,7 @@
 		</div>
 	</body>
 	<script>
-
+//父组件向子组件传值:通过props进行接收,然后在子组件名标签上进行挂载:msg="msg"
 var vm=new Vue({
 	el:"#app",
 	data:{
@@ -37,20 +37,20 @@ msg:"父信息"
 //				 
 //				}
 //			},
-			//props:["list"],
-			props:{
-				'list':{
-					type:Array,
-					default:function(){
-						return ["111哈哈哈","222哈哈哈","333"]
-						
-					}
-				},
-				"msg":{
-				 type:String,
-				 default:"子信息"
-				}
-			},
+			props:["list","msg"],//这里的list就是:msg="msg"里的key值:msg， value值"msg"就是父组件vue里的msg
+//			props:{
+//				'list':{
+//					type:Array,
+//					default:function(){
+//						return ["111哈哈哈","222哈哈哈","333"]
+//						
+//					}
+//				},
+//				"msg":{
+//				 type:String,
+//				 default:"子信息"
+//				}
+//			},
 			components:{
 				"my-nav":{
 					template:`<div>

@@ -4,15 +4,17 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		
-		<title></title>
+		<title>vue组件内容分发</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 	</head>
 	<body>
+		<!--插槽slot可以让不同组件组合起来-->
 		<div id="app">
 			<my-header>
 				<button slot="left">←</button>
 				<button slot="right">→</button>
+				<my-tit></my-tit>
 			</my-header>
 			
 		</div>
@@ -24,7 +26,7 @@ var vm=new Vue({
 	
 	components:{
 		"my-header": {
-			template:"<div><slot name='left'></slot>我是头部<slot name='right'><button >+</button></slot></div>",
+			template:"<div><slot name='left'></slot>我是头部<slot name='right'><button >+</button></slot><slot></slot></div>",//如果没有<button slot="right">→</button>，就会显示默认<slot name='right'><button >+</button></slot>
 			
 		},
 		"my-tit": {

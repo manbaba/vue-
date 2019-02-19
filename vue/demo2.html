@@ -10,25 +10,30 @@
 	</head>
 	<body>
 		<div id="app">
-			<!--<my-header>
+			<my-header>
+				
+			<!--</my-header>
+		<my-header>-->
 				
 			</my-header>
-		<my-header>
-				
-			</my-header>-->
-			{{msg}}
+			<!--{{msg}}-->
 		</div>
 	</body>
 	<script>
 		//全局组件
-//		Vue.component('my-header',{
-//			template:'<h2>标题</h2>'
-//		})
-//		var app=new Vue({
-//			el:"#app",
-//			
-//			
-//		})
+		Vue.component('my-header',{
+			template:'<h2>标题{{fa}}</h2>',
+			data:function(){
+				return{
+					fa:"888"
+				}
+			}
+		})
+		var app=new Vue({
+			el:"#app",
+			
+			
+		})
 //局部组件
 //		var vm=new Vue({
 //			el:"#app",
@@ -83,15 +88,15 @@
 //	el:"#app",
 //	template:"<h1>app英语</h1>"
 //})
-var myConponent=Vue.extend({
-	data:function(){
-		return{
-			msg:"hello vue!!!!!"
-		}
-	}
-})
-var vm=new myConponent({
-	el:"#app"
-})
+//var myConponent=Vue.extend({
+//	data:function(){
+//		return{
+//			msg:"hello vue!!!!!"
+//		}
+//	}
+//})
+//var vm=new myConponent({
+//	el:"#app"
+//})
 	</script>
 </html>

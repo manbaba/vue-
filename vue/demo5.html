@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		
-		<title></title>
+		<title>子组件向父组件传值</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 	</head>
@@ -14,7 +14,8 @@
 		</div>
 	</body>
 	<script>
-
+//子组件向父组件传值:发布与订阅模式。子组件通过emit发布,然后通过自定义事件进行接收达到通信目的。
+//在methods里写上一个方法然后方法里通过this.$emit（“changeEv”，“值”）自定义事件传递事件和值，然后在子组件标签上@事件名@changeEv，然后触发父组件的方法getchildCont达到接收值的目的
 var vm=new Vue({
 	el:"#app",
 	data:{
@@ -54,8 +55,8 @@ var vm=new Vue({
 			methods:{
 				getchildCont:function(str){
 					//console.log(str)
-					//this.nowmsg=str;//数据操作 ---推荐
-					this.$refs.myTit.innerHTML=str;//dom操作
+				this.nowmsg=str;//数据操作 ---推荐
+					//this.$refs.myTit.innerHTML=str;//dom操作
 				}
 			},
 			components:{
@@ -71,7 +72,7 @@ var vm=new Vue({
 					methods:{
 						getCont:function(ev){
 							
-							//console.log(ev.target.innerHTML)
+							console.log(ev.target.innerHTML)
 							this.$emit('changeEv',ev.target.innerHTML)
 						}
 					}
